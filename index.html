@@ -3,1047 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kajak bros | YouTube Kanál – Hladká & Divoká Voda</title>
+    <title>Kajak bros 1.0 | YouTube Kanál – Hladká & Divoká Voda</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Farby hladkej vody */
             --calm-dark: #071e3d;
             --calm-blue: #1f4287;
             --calm-light: #21e6c1;
-            
-            /* Farby divokej vody */
             --wild-dark: #0a192f;
             --wild-teal: #00b4d8;
-            --wild-accent: #ff6b00; /* Farba záchrannej vesty / akcie */
+            --wild-accent: #ff6b00;
             --yt-red: #ff0000;
-            
             --bg-main: #061224;
             --bg-card: #0d213f;
             --text-main: #f0f6fc;
             --text-muted: #94a3b8;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-main);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4, .brand-font {
-            font-family: 'Outfit', sans-serif;
-        }
-
-        /* Navigácia */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(6, 18, 36, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-            color: white;
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-icon {
-            width: 38px;
-            height: 38px;
-            background: linear-gradient(135deg, var(--calm-light), var(--wild-accent));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: white;
-        }
-
-        .btn-subscribe {
-            background-color: var(--yt-red);
-            color: white;
-            border: none;
-            padding: 0.65rem 1.25rem;
-            border-radius: 999px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-subscribe:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 0, 0, 0.4);
-        }
-
-        .btn-subscribe.subscribed {
-            background-color: #27374d;
-            color: var(--calm-light);
-            box-shadow: none;
-        }
-
-        /* Hero sekcia – Rozdelenie dvoch svetov */
-        .hero {
-            position: relative;
-            min-height: 92vh;
-            padding-top: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        /* Pozadie: Ľavá strana hladká voda, Pravá strana divoká voda */
-        .hero-split-bg {
-            position: absolute;
-            inset: 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            z-index: 0;
-        }
-
-        .bg-calm {
-            background: radial-gradient(circle at 30% 40%, rgba(33, 230, 193, 0.18), transparent 60%),
-                        linear-gradient(180deg, #071e3d 0%, #061224 100%);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .bg-wild {
-            background: radial-gradient(circle at 70% 35%, rgba(255, 107, 0, 0.2), transparent 55%),
-                        radial-gradient(circle at 80% 70%, rgba(0, 180, 216, 0.2), transparent 55%),
-                        linear-gradient(180deg, #0b2545 0%, #061224 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-            text-align: center;
-        }
-
-        .channel-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 0.4rem 1rem;
-            border-radius: 999px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #e2e8f0;
-        }
-
-        .yt-dot {
-            width: 8px;
-            height: 8px;
-            background-color: var(--yt-red);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--yt-red);
-        }
-
-        .hero h1 {
-            font-size: clamp(2.8rem, 6vw, 5rem);
-            font-weight: 900;
-            line-height: 1.05;
-            margin-bottom: 1.25rem;
-            letter-spacing: -1.5px;
-        }
-
-        .text-calm {
-            background: linear-gradient(90deg, #a8edea, var(--calm-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .text-wild {
-            background: linear-gradient(90deg, var(--wild-teal), var(--wild-accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 680px;
-            margin: 0 auto 2.5rem;
-        }
-
-        .hero-actions {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--wild-teal), var(--calm-blue));
-            color: white;
-            text-decoration: none;
-            padding: 0.9rem 1.8rem;
-            border-radius: 12px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 700;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.35);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: white;
-            text-decoration: none;
-            padding: 0.9rem 1.8rem;
-            border-radius: 12px;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-        }
-
-        /* Štatistiky kanála */
-        .stats-bar {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 800px;
-            margin: 3.5rem auto 0;
-            padding: 1.5rem;
-            background: rgba(13, 33, 63, 0.65);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .stat-item h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-        }
-
-        .stat-item p {
-            font-size: 0.85rem;
-            margin: 0;
-            color: var(--text-muted);
-        }
-
-        /* Vlnový predel */
-        .wave-divider {
-            width: 100%;
-            overflow: hidden;
-            line-height: 0;
-            margin-top: -40px;
-            position: relative;
-            z-index: 3;
-        }
-
-        /* Sekcia: Dva štýly kajakovania */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 1.5rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.4rem;
-            font-weight: 800;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-header p {
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .styles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .style-card {
-            position: relative;
-            border-radius: 24px;
-            padding: 2.5rem;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .style-card:hover {
-            transform: translateY(-6px);
-        }
-
-        .card-calm {
-            background: linear-gradient(145deg, #0b2b48, #07192d);
-            border-top: 3px solid var(--calm-light);
-        }
-
-        .card-wild {
-            background: linear-gradient(145deg, #162447, #0b132b);
-            border-top: 3px solid var(--wild-accent);
-        }
-
-        .style-tag {
-            display: inline-block;
-            padding: 0.35rem 0.85rem;
-            border-radius: 999px;
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 1.2rem;
-        }
-
-        .tag-calm {
-            background: rgba(33, 230, 193, 0.15);
-            color: var(--calm-light);
-        }
-
-        .tag-wild {
-            background: rgba(255, 107, 0, 0.15);
-            color: var(--wild-accent);
-        }
-
-        .style-card h3 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-        }
-
-        .style-card p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.65rem;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-size: 0.95rem;
-            color: #e2e8f0;
-        }
-
-        /* Sekcia: Videá (YouTube mriežka) */
-        .filter-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 0.75rem;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
-            padding: 0.6rem 1.3rem;
-            border-radius: 999px;
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .filter-btn:hover {
-            color: white;
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .filter-btn.active {
-            background: white;
-            color: var(--bg-main);
-            border-color: white;
-        }
-
-        .videos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
-            gap: 1.75rem;
-        }
-
-        .video-card {
-            background: var(--bg-card);
-            border-radius: 18px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            cursor: pointer;
-            transition: transform 0.25s, box-shadow 0.25s;
-        }
-
-        .video-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .thumbnail {
-            position: relative;
-            aspect-ratio: 16 / 9;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .thumb-calm {
-            background: linear-gradient(135deg, #0d3b66 0%, #1d6f8a 50%, #21e6c1 100%);
-        }
-
-        .thumb-wild {
-            background: linear-gradient(135deg, #0a192f 0%, #0077b6 55%, #ff6b00 100%);
-        }
-
-        .thumb-gear {
-            background: linear-gradient(135deg, #1b263b 0%, #415a77 60%, #778da9 100%);
-        }
-
-        .thumb-art {
-            position: absolute;
-            inset: 0;
-            opacity: 0.35;
-        }
-
-        .play-btn {
-            width: 58px;
-            height: 58px;
-            background: rgba(0, 0, 0, 0.7);
-            border: 2px solid white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .video-card:hover .play-btn {
-            transform: scale(1.1);
-            background: var(--yt-red);
-            border-color: var(--yt-red);
-        }
-
-        .duration {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.8);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.2rem 0.5rem;
-            border-radius: 6px;
-            z-index: 2;
-        }
-
-        .video-badge {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 0.25rem 0.65rem;
-            border-radius: 999px;
-            z-index: 2;
-            backdrop-filter: blur(6px);
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(6, 18, 36, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0.9rem 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+        .logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: white; font-weight: 800; font-size: 1.35rem; font-family: 'Outfit', sans-serif; letter-spacing: -0.5px; }
+        .logo-icon { width: 40px; height: 40px; background: linear-gradient(135deg, var(--calm-light), var(--wild-accent)); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover { color: white; }
+        .nav-actions { display: flex; align-items: center; gap: 0.65rem; }
+        .btn-yt-link { background-color: var(--yt-red); color: white; text-decoration: none; padding: 0.6rem 1.15rem; border-radius: 999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.45rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-yt-link:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 0, 0.45); }
+        .btn-sub-toggle { background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); padding: 0.6rem 1rem; border-radius: 999px; font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 0.88rem; cursor: pointer; transition: all 0.2s; }
+        .btn-sub-toggle:hover { background: rgba(255, 255, 255, 0.18); }
+        .btn-sub-toggle.subscribed { background: rgba(33, 230, 193, 0.18); border-color: var(--calm-light); color: var(--calm-light); }
+        .hero { position: relative; min-height: 95vh; padding-top: 95px; padding-bottom: 50px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-split-bg { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; z-index: 0; }
+        .bg-calm { background: radial-gradient(circle at 25% 40%, rgba(33, 230, 193, 0.16), transparent 60%), linear-gradient(180deg, #071e3d 0%, #061224 100%); border-right: 1px solid rgba(255, 255, 255, 0.06); }
+        .bg-wild { background: radial-gradient(circle at 75% 35%, rgba(255, 107, 0, 0.22), transparent 55%), radial-gradient(circle at 80% 75%, rgba(0, 180, 216, 0.18), transparent 55%), linear-gradient(180deg, #0b2545 0%, #061224 100%); }
+        .hero-content { position: relative; z-index: 2; max-width: 1120px; width: 100%; margin: 0 auto; padding: 1.5rem; text-align: center; }
+        .channel-badge { display: inline-flex; align-items: center; gap: 0.6rem; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18); padding: 0.45rem 1.15rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.25rem; color: #e2e8f0; text-decoration: none; transition: background 0.2s, transform 0.2s; }
+        .channel-badge:hover { background: rgba(255, 255, 255, 0.16); transform: translateY(-1px); }
+        .yt-dot { width: 8px; height: 8px; background-color: var(--yt-red); border-radius: 50%; box-shadow: 0 0 10px var(--yt-red); }
+        .hero h1 { font-size: clamp(2.5rem, 5.5vw, 4.5rem); font-weight: 900; line-height: 1.08; margin-bottom: 1rem; letter-spacing: -1.5px; }
+        .text-calm { background: linear-gradient(90deg, #a8edea, var(--calm-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-wild { background: linear-gradient(90deg, var(--wild-teal), var(--wild-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 660px; margin: 0 auto 2rem; }
+        .hero-actions { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--wild-teal), var(--calm-blue)); color: white; text-decoration: none; padding: 0.85rem 1.7rem; border-radius: 12px; font-family: 'Outfit', sans-serif; font-weight: 700; transition: transform 0.2s, box-shadow 0.2s; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0, 180, 216, 0.35); }
+        .btn-secondary { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); color: white; text-decoration: none; padding: 0.85rem 1.7rem; border-radius: 12px; font-family: 'Outfit', sans-serif; font-weight: 600; transition: background 0.2s; }
+        .btn-secondary:hover { background: rgba(255, 255, 255, 0.14); }
+        .kayaks-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 940px; margin: 0 auto 2.5rem; }
+        .kayak-scene-box { background: rgba(13, 33, 63, 0.65); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 1.25rem; backdrop-filter: blur(8px); overflow: hidden; }
+        .scene-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 0.5rem; display: block; }
+        .label-calm { color: var(--calm-light); }
+        .label-wild { color: var(--wild-accent); }
+        @keyframes floatCalm { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-4px) rotate(0.8deg); } }
+        @keyframes rideWild { 0%, 100% { transform: translateY(0px) rotate(-4deg); } 35% { transform: translateY(-7px) rotate(4deg); } 70% { transform: translateY(2px) rotate(-6deg); } }
+        .anim-calm-kayak { animation: floatCalm 4s ease-in-out infinite; transform-origin: center; }
+        .anim-wild-kayak { animation: rideWild 2.1s ease-in-out infinite; transform-origin: center; }
+        .stats-bar { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 780px; margin: 0 auto; padding: 1.4rem; background: rgba(13, 33, 63, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; backdrop-filter: blur(10px); }
+        .stat-item h3 { font-size: 1.8rem; font-weight: 800; color: white; }
+        .stat-item p { font-size: 0.85rem; margin: 0; color: var(--text-muted); }
+        .section { max-width: 1200px; margin: 0 auto; padding: 4.5rem 1.5rem; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.3rem; font-weight: 800; margin-bottom: 0.65rem; }
+        .section-header p { color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+        .styles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+        .style-card { border-radius: 24px; padding: 2.25rem; border: 1px solid rgba(255, 255, 255, 0.08); transition: transform 0.3s ease; }
+        .style-card:hover { transform: translateY(-5px); }
+        .card-calm { background: linear-gradient(145deg, #0b2b48, #07192d); border-top: 3px solid var(--calm-light); }
+        .card-wild { background: linear-gradient(145deg, #162447, #0b132b); border-top: 3px solid var(--wild-accent); }
+        .style-tag { display: inline-block; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem; }
+        .tag-calm { background: rgba(33, 230, 193, 0.15); color: var(--calm-light); }
+        .tag-wild { background: rgba(255, 107, 0, 0.15); color: var(--wild-accent); }
+        .style-card h3 { font-size: 1.65rem; margin-bottom: 0.85rem; }
+        .style-card p { color: var(--text-muted); margin-bottom: 1.25rem; }
+        .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .feature-list li { display: flex; align-items: center; gap: 0.6rem; font-size: 0.94rem; color: #e2e8f0; }
+        .filter-tabs { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+        .filter-btn { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.1); color: var(--text-muted); padding: 0.6rem 1.3rem; border-radius: 999px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+        .filter-btn:hover { color: white; border-color: rgba(255, 255, 255, 0.3); }
+        .filter-btn.active { background: white; color: var(--bg-main); border-color: white; }
+        .videos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 1.75rem; }
+        .video-card { background: var(--bg-card); border-radius: 18px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.07); cursor: pointer; transition: transform 0.25s, box-shadow 0.25s; }
+        .video-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.45); }
+        .thumbnail { position: relative; aspect-ratio: 16 / 9; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .thumb-calm { background: linear-gradient(135deg, #0d3b66 0%, #1d6f8a 55%, #21e6c1 100%); }
+        .thumb-wild { background: linear-gradient(135deg, #0a192f 0%, #0077b6 55%, #ff6b00 100%); }
+        .thumb-gear { background: linear-gradient(135deg, #1b263b 0%, #3a5a78 60%, #778da9 100%); }
+        .thumb-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+        .play-btn { width: 56px; height: 56px; background: rgba(0, 0, 0, 0.72); border: 2px solid white; border-radius: 50%; display: flex; align-items: center; justify-content: center; z-index: 2; transition: transform 0.2s, background 0.2s; }
+        .video-card:hover .play-btn { transform: scale(1.1); background: var(--yt-red); border-color: var(--yt-red); }
+        .duration { position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.82); color: white; font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 6px; z-index: 2; }
+        .video-badge { position: absolute; top: 10px; left: 10px; font-size: 0.72rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 999px; z-index: 2; backdrop-filter: blur(6px); }
         .badge-calm { background: rgba(33, 230, 193, 0.25); color: #b8fff0; border: 1px solid rgba(33, 230, 193, 0.5); }
         .badge-wild { background: rgba(255, 107, 0, 0.3); color: #ffd8b8; border: 1px solid rgba(255, 107, 0, 0.6); }
         .badge-gear { background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255, 255, 255, 0.4); }
-
-        .video-info {
-            padding: 1.25rem;
-        }
-
-        .video-info h3 {
-            font-size: 1.08rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.35;
-        }
-
-        .video-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        /* O kanáli */
-        .about-box {
-            background: linear-gradient(135deg, rgba(13, 33, 63, 0.9), rgba(7, 25, 45, 0.9));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 28px;
-            padding: 3.5rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .bros-avatars {
-            display: flex;
-            justify-content: center;
-            gap: -15px;
-        }
-
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.2rem;
-            border: 4px solid var(--bg-main);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .avatar-1 {
-            background: linear-gradient(135deg, var(--calm-light), #0d3b66);
-            color: white;
-            transform: translateX(12px);
-        }
-
-        .avatar-2 {
-            background: linear-gradient(135deg, var(--wild-accent), #0a192f);
-            color: white;
-            transform: translateX(-12px);
-        }
-
-        .avatar span {
-            font-size: 0.7rem;
-            font-weight: 500;
-            opacity: 0.85;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 3rem 1.5rem;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Modal prehrávača */
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
-
-        .modal.open {
-            display: flex;
-        }
-
-        .modal-content {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            max-width: 720px;
-            width: 100%;
-            overflow: hidden;
-            animation: popIn 0.25s ease;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0.92); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .modal-video-screen {
-            aspect-ratio: 16 / 9;
-            background: #030914;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .modal-footer {
-            padding: 1.25rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .close-modal {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .close-modal:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
+        .video-info { padding: 1.25rem; }
+        .video-info h3 { font-size: 1.06rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.35; }
+        .video-meta { display: flex; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); }
+        .about-box { background: linear-gradient(135deg, rgba(13, 33, 63, 0.9), rgba(7, 25, 45, 0.9)); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 28px; padding: 3rem; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 2.5rem; align-items: center; }
+        .bros-avatars { display: flex; justify-content: center; }
+        .avatar { width: 120px; height: 120px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.15rem; border: 4px solid var(--bg-main); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4); }
+        .avatar-1 { background: linear-gradient(135deg, var(--calm-light), #0d3b66); color: white; transform: translateX(12px); }
+        .avatar-2 { background: linear-gradient(135deg, var(--wild-accent), #0a192f); color: white; transform: translateX(-12px); }
+        .avatar span { font-size: 0.7rem; font-weight: 500; opacity: 0.9; }
+        footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 2.5rem 1.5rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--calm-light); text-decoration: none; font-weight: 600; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; padding: 1.5rem; }
+        .modal.open { display: flex; }
+        .modal-content { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 20px; max-width: 680px; width: 100%; overflow: hidden; }
+        .modal-video-screen { aspect-ratio: 16 / 9; background: #030914; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2rem; text-align: center; }
+        .modal-footer { padding: 1.25rem 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+        .close-modal { background: rgba(255, 255, 255, 0.1); border: none; color: white; padding: 0.55rem 1rem; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .close-modal:hover { background: rgba(255, 255, 255, 0.2); }
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .hero-split-bg { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+            .kayaks-showcase { grid-template-columns: 1fr; }
             .stats-bar { grid-template-columns: 1fr; gap: 1rem; }
             .about-box { grid-template-columns: 1fr; padding: 2rem; text-align: center; }
         }
     </style>
 </head>
 <body>
-
-    <!-- Navigácia -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">
                 <div class="logo-icon">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M2 12c2-2 4-2 6 0s4 2 6 0 4-2 6 0 4 2 6 0"/>
-                        <path d="M2 17c2-2 4-2 6 0s4 2 6 0 4 2 6 0 4 2 6 0"/>
-                        <path d="M7 7l10-3-3 10"/>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 14c5 3 13 3 18 0-5-3-13-3-18 0z"/>
+                        <path d="M7 18L17 6"/>
+                        <path d="M2 19c2-1 4-1 6 0s4 1 6 0 4-1 6 0"/>
                     </svg>
                 </div>
-                Kajak bros
+                Kajak bros 1.0
             </a>
-
             <ul class="nav-links">
                 <li><a href="#styly">Dva svety vody</a></li>
                 <li><a href="#videa">Videá</a></li>
-                <li><a href="#o-nas">O nás</a></li>
+                <li><a href="#o-nas">O kanáli</a></li>
             </ul>
-
-            <button class="btn-subscribe" id="subBtn" onclick="toggleSubscribe()">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <span id="subText">Odoberať kanál</span>
-            </button>
+            <div class="nav-actions">
+                <button class="btn-sub-toggle" id="subBtn" onclick="toggleSubscribe()">Odoberať (7)</button>
+                <a href="https://www.youtube.com/results?search_query=Kajak+bros+1.0" target="_blank" rel="noopener noreferrer" class="btn-yt-link">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    YouTube kanál ↗
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- Hero Sekcia -->
     <section class="hero">
-        <div class="hero-split-bg">
-            <div class="bg-calm"></div>
-            <div class="bg-wild"></div>
-        </div>
-
+        <div class="hero-split-bg"><div class="bg-calm"></div><div class="bg-wild"></div></div>
         <div class="hero-content">
-            <div class="channel-badge">
-                <span class="yt-dot"></span>
-                YouTube kanál • Nové video každý týždeň
-            </div>
-
-            <h1>
-                Pokoj <span class="text-calm">hladkej vody</span>.<br>
-                Adrenalín <span class="text-wild">divokých perejí</span>.
-            </h1>
-
-            <p>
-                Vitaj na oficiálnej stránke kanála <strong>Kajak bros</strong>. Spájame zrkadlové hladiny ranných jazier s burácajúcimi riekami. Pádlo v ruke, kamera na prilbe – poď do vody s nami!
-            </p>
-
+            <a href="https://www.youtube.com/results?search_query=Kajak+bros+1.0" target="_blank" rel="noopener noreferrer" class="channel-badge"><span class="yt-dot"></span>YouTube kanál: Kajak bros 1.0 • Klikni a otvor na YouTube ↗</a>
+            <h1>Pokoj <span class="text-calm">hladkej vody</span>.<br>Adrenalín <span class="text-wild">divokých perejí</span>.</h1>
+            <p>Vitaj na stránke kanála <strong>Kajak bros 1.0</strong>! Spájame zrkadlové hladiny jazier a priehrad s divokou vodou v perejach. Zober pádlo a poď s nami zažiť obe strany kajakovania.</p>
             <div class="hero-actions">
-                <a href="#videa" class="btn-primary">Pozrieť najnovšie videá</a>
-                <a href="#styly" class="btn-secondary">Hladká vs. Divoká voda</a>
+                <a href="https://www.youtube.com/results?search_query=Kajak+bros+1.0" target="_blank" rel="noopener noreferrer" class="btn-primary">Otvoriť kanál na YouTube ↗</a>
+                <a href="#videa" class="btn-secondary">Pozrieť kajakárske videá</a>
             </div>
-
+            <div class="kayaks-showcase">
+                <div class="kayak-scene-box">
+                    <span class="scene-label label-calm">Hladká voda • Turistický kajak</span>
+                    <svg viewBox="0 0 360 120" width="100%" height="115" fill="none">
+                        <circle cx="290" cy="30" r="16" fill="#21e6c1" fill-opacity="0.25"/>
+                        <g class="anim-calm-kayak">
+                            <circle cx="178" cy="44" r="8" fill="#e2e8f0"/>
+                            <path d="M170 54h16l4 20h-24l4-20z" fill="#21e6c1"/>
+                            <path d="M135 88L225 46" stroke="#f8fafc" stroke-width="3" stroke-linecap="round"/>
+                            <ellipse cx="132" cy="89" rx="10" ry="4" transform="rotate(-25 132 89)" fill="#21e6c1"/>
+                            <ellipse cx="228" cy="45" rx="10" ry="4" transform="rotate(-25 228 45)" fill="#21e6c1"/>
+                            <path d="M60 76 Q180 94 300 74 Q240 66 180 68 Q120 66 60 76 Z" fill="#0ea5e9" stroke="#a8edea" stroke-width="2"/>
+                        </g>
+                        <path d="M0 84 Q90 80 180 84 T360 84 V120 H0 Z" fill="#21e6c1" fill-opacity="0.2"/>
+                        <path d="M0 92 Q90 89 180 92 T360 92" stroke="#21e6c1" stroke-width="2" stroke-opacity="0.6"/>
+                    </svg>
+                </div>
+                <div class="kayak-scene-box">
+                    <span class="scene-label label-wild">Divoká voda • Kajak do perejí</span>
+                    <svg viewBox="0 0 360 120" width="100%" height="115" fill="none">
+                        <path d="M20 95 L55 55 L90 95 Z" fill="#1e293b"/><path d="M270 95 L310 50 L350 95 Z" fill="#1e293b"/>
+                        <g class="anim-wild-kayak">
+                            <circle cx="176" cy="40" r="9" fill="#ff6b00"/><path d="M167 40a9 9 0 0 1 18 0" fill="#fb923c"/>
+                            <path d="M167 51h18l5 18h-28l5-18z" fill="#ff6b00"/>
+                            <path d="M138 35L212 88" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round"/>
+                            <ellipse cx="136" cy="34" rx="11" ry="5" transform="rotate(35 136 34)" fill="#ff6b00"/><ellipse cx="215" cy="90" rx="11" ry="5" transform="rotate(35 215 90)" fill="#ff6b00"/>
+                            <path d="M105 68 Q175 88 245 64 Q210 58 175 62 Q140 58 105 68 Z" fill="#ff6b00" stroke="#fed7aa" stroke-width="2"/>
+                        </g>
+                        <path d="M0 90 Q45 68 90 88 T180 82 T270 90 T360 76 V120 H0 Z" fill="#00b4d8" fill-opacity="0.35"/>
+                        <path d="M0 92 Q45 70 90 90 T180 84 T270 92 T360 78" stroke="#e0f2fe" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </div>
             <div class="stats-bar">
-                <div class="stat-item">
-                    <h3 id="subCount">42 800</h3>
-                    <p>Odberateľov na YouTube</p>
-                </div>
-                <div class="stat-item">
-                    <h3>2,4 mil.</h3>
-                    <p>Zhliadnutí z vody</p>
-                </div>
-                <div class="stat-item">
-                    <h3>1 350+ km</h3>
-                    <p>Odpádlovaných riek a jazier</p>
-                </div>
+                <div class="stat-item"><h3 id="subCount">7</h3><p>Odberateľov na YouTube</p></div>
+                <div class="stat-item"><h3>2 štýly</h3><p>Hladká aj divoká voda</p></div>
+                <div class="stat-item"><h3>100 %</h3><p>Vášne pre kajakovanie</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Vlnový predel -->
-    <div class="wave-divider">
-        <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%; height:60px;">
-            <path d="M0 40C240 90 480 0 720 45C960 90 1200 10 1440 50V100H0V40Z" fill="#061224"/>
-        </svg>
-    </div>
-
-    <!-- Sekcia: Hladká vs Divoká voda -->
     <section class="section" id="styly">
-        <div class="section-header">
-            <h2>Dva živly, jedna vášeň</h2>
-            <p>Na našom kanáli nájdeš dokonalú rovnováhu medzi relaxačnou turistikou a extrémnym pádlovaním.</p>
-        </div>
-
+        <div class="section-header"><h2>Dva živly, jedna vášeň</h2><p>Na kanáli Kajak bros 1.0 spájame pokojné túry na hladine s rýchlymi zjazdmi riek.</p></div>
         <div class="styles-grid">
-            <!-- Hladká voda -->
-            <div class="style-card card-calm">
-                <span class="style-tag tag-calm">Hladká voda • Flatwater</span>
-                <h3>Zrkadlové hladiny a sloboda</h3>
-                <p>Keď ráno stúpa hmla nad priehradou a jediný zvuk je špliechanie pádla. Ideálne pre milovníkov prírody, diaľkových splavov a kempovania na vode.</p>
-                <ul class="feature-list">
-                    <li><span>🌊</span> Priehrady, jazerá a pokojné meandre riek</li>
-                    <li><span>🌅</span> Východy slnka, rybačka z kajaku a bikepacking/kayakpacking</li>
-                    <li><span>🎥</span> Zábery z dronu a relaxačné 4K vlogy</li>
-                </ul>
-            </div>
-
-            <!-- Divoká voda -->
-            <div class="style-card card-wild">
-                <span class="style-tag tag-wild">Divoká voda • Whitewater</span>
-                <h3>Pereje, vlny a čistý adrenalín</h3>
-                <p>Keď voda naberie rýchlosť a každé záber pádla rozhoduje o stope. Testujeme horské rieky, kanály a učíme eskimácke obraty v prúde.</p>
-                <ul class="feature-list">
-                    <li><span>⚡</span> Rieky obtiažnosti WW II až WW IV+</li>
-                    <li><span>🪖</span> Akčné POV zábery priamo z prilby (GoPro)</li>
-                    <li><span>🛶</span> Technika pádlovania, záchrana a testy výbavy</li>
-                </ul>
-            </div>
+            <div class="style-card card-calm"><span class="style-tag tag-calm">Hladká voda • Flatwater</span><h3>Zrkadlové hladiny a sloboda</h3><p>Keď ráno stúpa hmla nad priehradou a jediný zvuk je špliechanie pádla. Ideálne na relax, dlhé trasy a objavovanie zátok.</p><ul class="feature-list"><li><span>🛶</span> Turistické a morské kajaky na jazerách</li><li><span>🌅</span> Východy slnka a kempovanie pri vode</li><li><span>🎥</span> Pokojné zábery prírody a testy stability</li></ul></div>
+            <div class="style-card card-wild"><span class="style-tag tag-wild">Divoká voda • Whitewater</span><h3>Pereje, vlny a čistý adrenalín</h3><p>Keď rieka naberie rýchlosť a každý záber pádla rozhoduje o stope. Prilba, záchranná vesta a jazda v prúde.</p><ul class="feature-list"><li><span>⚡</span> Horské rieky a slalomové kanály</li><li><span>🪖</span> Akčné POV zábery z kamery na prilbe</li><li><span>🌊</span> Eskimácky obrat, nájazdy do prúdu a zábava</li></ul></div>
         </div>
     </section>
 
-    <!-- Sekcia: Videá -->
     <section class="section" id="videa">
-        <div class="section-header">
-            <h2>Najnovšie videá z kanála</h2>
-            <p>Vyber si, na akú vodu máš dnes náladu. Kliknutím na video spustíš náhľad.</p>
-        </div>
-
+        <div class="section-header"><h2>Videá o kajakovaní</h2><p>Klikni na ľubovoľné video pre náhľad alebo priamy prechod na YouTube.</p></div>
         <div class="filter-tabs">
-            <button class="filter-btn active" onclick="filterVideos('all', this)">Všetky videá</button>
-            <button class="filter-btn" onclick="filterVideos('calm', this)">Hladká voda</button>
-            <button class="filter-btn" onclick="filterVideos('wild', this)">Divoká voda</button>
-            <button class="filter-btn" onclick="filterVideos('gear', this)">Výbava & Tipy</button>
+            <button class="filter-btn active" onclick="filterVideos('all', this)">Všetky videá</button><button class="filter-btn" onclick="filterVideos('calm', this)">Hladká voda</button><button class="filter-btn" onclick="filterVideos('wild', this)">Divoká voda</button><button class="filter-btn" onclick="filterVideos('gear', this)">Výbava & Tipy</button>
         </div>
-
-        <div class="videos-grid" id="videosGrid">
-            <!-- Video 1 -->
-            <article class="video-card" data-category="calm" onclick="openModal('Ranná hmla na Oravskej priehrade | 30 km v úplnom tichu', 'Hladká voda • 14:20', 'Pokojný ranný splav zrkadlovej hladiny s kávou na opustenom ostrove.')">
-                <div class="thumbnail thumb-calm">
-                    <svg class="thumb-art" viewBox="0 0 400 225" fill="none">
-                        <path d="M0 150 Q100 130 200 150 T400 150 V225 H0 Z" fill="white" fill-opacity="0.3"/>
-                        <circle cx="300" cy="65" r="35" fill="white" fill-opacity="0.4"/>
-                    </svg>
-                    <span class="video-badge badge-calm">Hladká voda</span>
-                    <div class="play-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="duration">14:20</span>
-                </div>
-                <div class="video-info">
-                    <h3>Ranná hmla na Oravskej priehrade | 30 km v úplnom tichu</h3>
-                    <div class="video-meta">
-                        <span>28 tis. zhliadnutí</span>
-                        <span>pred 3 dňami</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Video 2 -->
-            <article class="video-card" data-category="wild" onclick="openModal('Extrémna Belá počas topenia snehu! | GoPro POV', 'Divoká voda • 16:45', 'Rýchla horská rieka, ľadová voda a tie najlepšie vlny sezóny na Liptove.')">
-                <div class="thumbnail thumb-wild">
-                    <svg class="thumb-art" viewBox="0 0 400 225" fill="none">
-                        <path d="M0 160 L50 120 L110 155 L180 95 L250 150 L320 105 L400 165 V225 H0 Z" fill="white" fill-opacity="0.35"/>
-                    </svg>
-                    <span class="video-badge badge-wild">Divoká voda</span>
-                    <div class="play-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="duration">16:45</span>
-                </div>
-                <div class="video-info">
-                    <h3>Extrémna Belá počas topenia snehu! | GoPro POV</h3>
-                    <div class="video-meta">
-                        <span>64 tis. zhliadnutí</span>
-                        <span>pred 1 týždňom</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Video 3 -->
-            <article class="video-card" data-category="gear" onclick="openModal('Turistický vs. Divokovodný kajak – Ktorý si vybrať?', 'Výbava & Tipy • 19:10', 'Porovnanie stability, rýchlosti a ovládateľnosti na jazere aj v perejach.')">
-                <div class="thumbnail thumb-gear">
-                    <svg class="thumb-art" viewBox="0 0 400 225" fill="none">
-                        <path d="M40 180 L360 45" stroke="white" stroke-width="12" stroke-opacity="0.25" stroke-linecap="round"/>
-                        <path d="M40 45 L360 180" stroke="white" stroke-width="12" stroke-opacity="0.15" stroke-linecap="round"/>
-                    </svg>
-                    <span class="video-badge badge-gear">Výbava</span>
-                    <div class="play-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="duration">19:10</span>
-                </div>
-                <div class="video-info">
-                    <h3>Turistický vs. Divokovodný kajak – Ktorý si vybrať?</h3>
-                    <div class="video-meta">
-                        <span>41 tis. zhliadnutí</span>
-                        <span>pred 2 týždňami</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Video 4 -->
-            <article class="video-card" data-category="wild" onclick="openModal('Kanál Čunovo: Tréning na olympijských perejach', 'Divoká voda • 11:30', 'Ako zvládnuť silný prúd, nájazdy do vracákov a eskimácky obrat na prvý pokus.')">
-                <div class="thumbnail thumb-wild">
-                    <svg class="thumb-art" viewBox="0 0 400 225" fill="none">
-                        <circle cx="200" cy="112" r="70" stroke="white" stroke-width="10" stroke-opacity="0.25"/>
-                        <path d="M0 180 Q150 110 400 170 V225 H0 Z" fill="white" fill-opacity="0.3"/>
-                    </svg>
-                    <span class="video-badge badge-wild">Divoká voda</span>
-                    <div class="play-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="duration">11:30</span>
-                </div>
-                <div class="video-info">
-                    <h3>Kanál Čunovo: Tréning na olympijských perejach</h3>
-                    <div class="video-meta">
-                        <span>53 tis. zhliadnutí</span>
-                        <span>pred 3 týždňami</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Video 5 -->
-            <article class="video-card" data-category="calm" onclick="openModal('Nočný splav Malého Dunaja s čelovkami', 'Hladká voda • 22:05', 'Magická atmosféra nočnej rieky, zvuk lesa a opekačka na brehu.')">
-                <div class="thumbnail thumb-calm">
-                    <svg class="thumb-art" viewBox="0 0 400 225" fill="none">
-                        <path d="M0 140 Q100 120 200 140 T400 140 V225 H0 Z" fill="white" fill-opacity="0.25"/>
-                        <circle cx="90" cy="60" r="18" fill="white" fill-opacity="0.45"/>
-                    </svg>
-                    <span class="video-badge badge-calm">Hladká voda</span>
-                    <div class="play-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="duration">22:05</span>
-                </div>
-                <div class="video-info">
-                    <h3>Nočný splav Malého Dunaja s čelovkami</h3>
-                    <div class="video-meta">
-                        <span>35 tis. zhliadnutí</span>
-                        <span>pred 1 mesiacom</span>
-                    </div>
-                </div>
-            </article>
-
-            <!-- Video 6 -->
-            <article class="video-card" data-category="wild" onclick="openModal('Rakúska Salza: Najkrajšia smaragdová rieka v okolí', 'Divoká voda • 24:15', 'Víkendová expedícia do Álp plná kaňonov, skokov do vody a skvelých perejí.')">
-                <div class="thumbnail thumb-wild">
-                    <svg class="thumb-art" viewBox="0 0 400 225" fill="none">
-                        <path d="M0 175 L80 110 L170 155 L260 80 L340 140 L400 110 V225 H0 Z" fill="white" fill-opacity="0.3"/>
-                    </svg>
-                    <span class="video-badge badge-wild">Divoká voda</span>
-                    <div class="play-btn">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                    </div>
-                    <span class="duration">24:15</span>
-                </div>
-                <div class="video-info">
-                    <h3>Rakúska Salza: Najkrajšia smaragdová rieka v okolí</h3>
-                    <div class="video-meta">
-                        <span>89 tis. zhliadnutí</span>
-                        <span>pred 1 mesiacom</span>
-                    </div>
-                </div>
-            </article>
+        <div class="videos-grid">
+            <article class="video-card" data-category="calm" onclick="openModal('Kajakovanie na hladkej vode: Ranný splav jazera', 'Hladká voda • Turistický kajak', 'Pokojné pádlovanie v rannej hmle, technika rovného záberu a tipy na dlhé výlety v kajaku.', 'https://www.youtube.com/results?search_query=kajakovanie+na+hladkej+vode')"><div class="thumbnail thumb-calm"><svg class="thumb-art" viewBox="0 0 400 225" fill="none"><path d="M0 155 Q100 138 200 155 T400 155 V225 H0 Z" fill="white" fill-opacity="0.28"/><path d="M90 142 Q200 158 310 140 Q255 133 200 135 Q145 133 90 142 Z" fill="#e0f2fe" fill-opacity="0.65"/><circle cx="200" cy="112" r="8" fill="#e0f2fe" fill-opacity="0.7"/><path d="M165 152 L235 112" stroke="white" stroke-width="3" stroke-opacity="0.7"/></svg><span class="video-badge badge-calm">Hladká voda</span><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><span class="duration">12:40</span></div><div class="video-info"><h3>Kajakovanie na hladkej vode: Ranný splav jazera</h3><div class="video-meta"><span>Kajak bros 1.0</span><span>Hladká voda</span></div></div></article>
+            <article class="video-card" data-category="wild" onclick="openModal('Divoká voda z kajaku: Zjazd perejí z prvej ruky (POV)', 'Divoká voda • Whitewater', 'Adrenalínová jazda cez vlny, prácu s pádlom v silnom prúde a čítanie rieky z kajaku.', 'https://www.youtube.com/results?search_query=kajakovanie+na+divokej+vode')"><div class="thumbnail thumb-wild"><svg class="thumb-art" viewBox="0 0 400 225" fill="none"><path d="M0 165 L60 120 L130 155 L200 105 L270 150 L340 110 L400 165 V225 H0 Z" fill="white" fill-opacity="0.25"/><path d="M135 128 Q200 146 265 122 Q230 116 200 120 Q168 116 135 128 Z" fill="#ff6b00" fill-opacity="0.8"/><circle cx="200" cy="98" r="9" fill="#fed7aa" fill-opacity="0.85"/><path d="M165 92 L235 142" stroke="white" stroke-width="3.5" stroke-opacity="0.8"/></svg><span class="video-badge badge-wild">Divoká voda</span><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><span class="duration">15:18</span></div><div class="video-info"><h3>Divoká voda z kajaku: Zjazd perejí z prvej ruky (POV)</h3><div class="video-meta"><span>Kajak bros 1.0</span><span>Divoká voda</span></div></div></article>
+            <article class="video-card" data-category="gear" onclick="openModal('Ako vybrať správny kajak: Hladká vs. Divoká voda', 'Výbava & Tipy • Porovnanie', 'Vysvetľujeme rozdiely v tvare trupu, dĺžke kajaku, typoch pádiel a výbere záchrannej vesty.', 'https://www.youtube.com/results?search_query=ako+vybrat+kajak')"><div class="thumbnail thumb-gear"><svg class="thumb-art" viewBox="0 0 400 225" fill="none"><path d="M60 95 Q200 112 340 95 Q200 84 60 95 Z" fill="#21e6c1" fill-opacity="0.45"/><path d="M110 145 Q200 165 290 145 Q200 135 110 145 Z" fill="#ff6b00" fill-opacity="0.55"/></svg><span class="video-badge badge-gear">Výbava</span><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><span class="duration">10:55</span></div><div class="video-info"><h3>Ako vybrať správny kajak: Hladká vs. Divoká voda</h3><div class="video-meta"><span>Kajak bros 1.0</span><span>Výbava & Tipy</span></div></div></article>
+            <article class="video-card" data-category="wild" onclick="openModal('Eskimácky obrat v kajaku – Krok za krokom', 'Divoká voda • Tréning', 'Návod pre začiatočníkov aj pokročilých, ako sa s kajakom bezpečne prevrátiť späť na hladinu.', 'https://www.youtube.com/results?search_query=eskimacky+obrat+kajak')"><div class="thumbnail thumb-wild"><svg class="thumb-art" viewBox="0 0 400 225" fill="none"><circle cx="200" cy="112" r="65" stroke="white" stroke-width="6" stroke-dasharray="18 12" stroke-opacity="0.35"/><path d="M135 112 Q200 130 265 112 Q200 100 135 112 Z" fill="#ff6b00" fill-opacity="0.6"/></svg><span class="video-badge badge-wild">Divoká voda</span><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><span class="duration">09:42</span></div><div class="video-info"><h3>Eskimácky obrat v kajaku – Krok za krokom</h3><div class="video-meta"><span>Kajak bros 1.0</span><span>Divoká voda</span></div></div></article>
+            <article class="video-card" data-category="calm" onclick="openModal('Celodenný splav rieky v turistickom kajaku', 'Hladká voda • Expedícia', 'Pohodový výlet po pokojných meandroch, prestávka na brehu a zábery z dronu nad vodou.', 'https://www.youtube.com/results?search_query=splav+rieky+kajak')"><div class="thumbnail thumb-calm"><svg class="thumb-art" viewBox="0 0 400 225" fill="none"><path d="M0 140 Q100 120 200 140 T400 140 V225 H0 Z" fill="white" fill-opacity="0.25"/><circle cx="95" cy="58" r="22" fill="white" fill-opacity="0.3"/><path d="M120 148 Q200 162 280 148 Q200 140 120 148 Z" fill="#21e6c1" fill-opacity="0.7"/></svg><span class="video-badge badge-calm">Hladká voda</span><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><span class="duration">18:10</span></div><div class="video-info"><h3>Celodenný splav rieky v turistickom kajaku</h3><div class="video-meta"><span>Kajak bros 1.0</span><span>Hladká voda</span></div></div></article>
+            <article class="video-card" data-category="gear" onclick="openModal('Čo si zbaliť do kajaku na vodu a nezabudnúť', 'Výbava & Tipy • Prakticky', 'Nepremokavé vaky, prilba, vesta, špricka a základná výbava na hladkú aj divokú vodu.', 'https://www.youtube.com/results?search_query=vybava+na+kajak')"><div class="thumbnail thumb-gear"><svg class="thumb-art" viewBox="0 0 400 225" fill="none"><path d="M60 175 L340 50" stroke="white" stroke-width="10" stroke-opacity="0.3" stroke-linecap="round"/><path d="M60 50 L340 175" stroke="white" stroke-width="10" stroke-opacity="0.2" stroke-linecap="round"/></svg><span class="video-badge badge-gear">Výbava</span><div class="play-btn"><svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div><span class="duration">08:30</span></div><div class="video-info"><h3>Čo si zbaliť do kajaku na vodu a nezabudnúť</h3><div class="video-meta"><span>Kajak bros 1.0</span><span>Výbava & Tipy</span></div></div></article>
         </div>
     </section>
 
-    <!-- Sekcia: O Kajak bros -->
     <section class="section" id="o-nas">
         <div class="about-box">
             <div>
-                <span class="style-tag tag-calm" style="margin-bottom: 0.75rem;">Kto sme</span>
-                <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">Dvaja bratia, jedno pádlo navyše</h2>
-                <p style="color: var(--text-muted); margin-bottom: 1.25rem;">
-                    Sme <strong>Marek a Tomáš</strong> – zakladatelia kanála <strong>Kajak bros</strong>. Marek miluje nekonečné hladké vody, východy slnka na priehradách a dlhé expedičné trasy. Tomáš zas vyhľadáva divokú vodu, skaly a adrenalín v perejach.
-                </p>
-                <p style="color: var(--text-muted);">
-                    Práve táto kombinácia tvorí náš kanál: raz ťa vezmeme na relaxačný výlet v absolútnom tichu, o týždeň neskôr ťa hodíme rovno do vĺn. Pridaj sa k našej komunite na YouTube!
-                </p>
+                <span class="style-tag tag-calm" style="margin-bottom: 0.75rem;">O kanáli Kajak bros 1.0</span>
+                <h2 style="font-size: 2.1rem; margin-bottom: 1rem;">Sme na začiatku veľkej vodnej jazdy!</h2>
+                <p style="color: var(--text-muted); margin-bottom: 1.15rem;">Kanál <strong>Kajak bros 1.0</strong> má zatiaľ <strong>7 odberateľov</strong>, no o to väčšiu chuť objavovať rieky a jazerá. Každý nový odber, lajk a komentár nám pomáha posúvať sa ďalej.</p>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Ak máš rád kajakovanie na hladkej vode alebo adrenalín v divokých perejach, pridaj sa k nám priamo na YouTube!</p>
+                <a href="https://www.youtube.com/results?search_query=Kajak+bros+1.0" target="_blank" rel="noopener noreferrer" class="btn-yt-link">Navštíviť Kajak bros 1.0 na YouTube ↗</a>
             </div>
-            <div class="bros-avatars">
-                <div class="avatar avatar-1">
-                    Marek
-                    <span>Hladká voda</span>
-                </div>
-                <div class="avatar avatar-2">
-                    Tomáš
-                    <span>Divoká voda</span>
-                </div>
-            </div>
+            <div class="bros-avatars"><div class="avatar avatar-1">Kajak<span>Hladká voda</span></div><div class="avatar avatar-2">Bros 1.0<span>Divoká voda</span></div></div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 <strong>Kajak bros</strong> • YouTube kanál o kajakovaní na hladkej aj divokej vode</p>
-    </footer>
+    <footer><p>© 2025 <strong>Kajak bros 1.0</strong> • <a href="https://www.youtube.com/results?search_query=Kajak+bros+1.0" target="_blank" rel="noopener noreferrer">Otvoriť kanál na YouTube ↗</a></p></footer>
 
-    <!-- Modal prehrávača videa -->
     <div class="modal" id="videoModal" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-video-screen">
-                <svg width="64" height="64" viewBox="0 0 24 24" fill="var(--yt-red)" style="margin-bottom: 1rem;">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
-                <h3 id="modalTitle" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Názov videa</h3>
-                <p id="modalDesc" style="color: var(--text-muted); max-width: 480px; font-size: 0.95rem;"></p>
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="var(--yt-red)" style="margin-bottom: 1rem;"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <h3 id="modalTitle" style="font-size: 1.35rem; margin-bottom: 0.6rem;">Názov videa</h3>
+                <p id="modalDesc" style="color: var(--text-muted); max-width: 480px; font-size: 0.95rem; margin-bottom: 1.5rem;"></p>
+                <a id="modalYtLink" href="#" target="_blank" rel="noopener noreferrer" class="btn-yt-link">Pozrieť na YouTube ↗</a>
             </div>
-            <div class="modal-footer">
-                <span id="modalMeta" style="color: var(--calm-light); font-size: 0.85rem; font-weight: 600;"></span>
-                <button class="close-modal" onclick="closeModalDirect()">Zavrieť náhľad</button>
-            </div>
+            <div class="modal-footer"><span id="modalMeta" style="color: var(--calm-light); font-size: 0.85rem; font-weight: 600;"></span><button class="close-modal" onclick="closeModalDirect()">Zavrieť</button></div>
         </div>
     </div>
 
     <script>
-        // Filtrovanie videí podľa kategórie
         function filterVideos(category, btn) {
             document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-
-            const cards = document.querySelectorAll('.video-card');
-            cards.forEach(card => {
-                if (category === 'all' || card.dataset.category === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
+            document.querySelectorAll('.video-card').forEach(card => {
+                card.style.display = (category === 'all' || card.dataset.category === category) ? 'block' : 'none';
             });
         }
-
-        // Tlačidlo Odber
         let isSubscribed = false;
-        let baseSubs = 42800;
-
+        const baseSubs = 7;
         function toggleSubscribe() {
             const btn = document.getElementById('subBtn');
-            const text = document.getElementById('subText');
             const count = document.getElementById('subCount');
-
             isSubscribed = !isSubscribed;
             if (isSubscribed) {
                 btn.classList.add('subscribed');
-                text.textContent = 'Odoberáte ✓';
-                count.textContent = (baseSubs + 1).toLocaleString('sk-SK');
+                btn.textContent = 'Odoberáte (8) ✓';
+                count.textContent = baseSubs + 1;
             } else {
                 btn.classList.remove('subscribed');
-                text.textContent = 'Odoberať kanál';
-                count.textContent = baseSubs.toLocaleString('sk-SK');
+                btn.textContent = 'Odoberať (7)';
+                count.textContent = baseSubs;
             }
         }
-
-        // Modal náhľadu videa
-        function openModal(title, meta, desc) {
+        function openModal(title, meta, desc, ytUrl) {
             document.getElementById('modalTitle').textContent = title;
             document.getElementById('modalMeta').textContent = meta;
             document.getElementById('modalDesc').textContent = desc;
+            document.getElementById('modalYtLink').href = ytUrl;
             document.getElementById('videoModal').classList.add('open');
         }
-
-        function closeModalDirect() {
-            document.getElementById('videoModal').classList.remove('open');
-        }
-
-        function closeModal(e) {
-            if (e.target.id === 'videoModal') {
-                closeModalDirect();
-            }
-        }
+        function closeModalDirect() { document.getElementById('videoModal').classList.remove('open'); }
+        function closeModal(e) { if (e.target.id === 'videoModal') closeModalDirect(); }
     </script>
 </body>
 </html>
